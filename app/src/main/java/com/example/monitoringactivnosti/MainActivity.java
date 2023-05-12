@@ -12,6 +12,8 @@ public class MainActivity extends AppCompatActivity {
 
     ImageButton podtagivaniya_button, otgimaniya_button, press_button, planka_button, prisedaniya_button, chagomer_button;
 
+    public static int massa = 60;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,16 +21,16 @@ public class MainActivity extends AppCompatActivity {
     }
     protected void onResume() {
         super.onResume();
-        podtagivaniya_button =  findViewById(R.id.podtagivaniya_button);
-    
-        podtagivaniya_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent podtagivaniya = new Intent(getApplicationContext(), podtagivaniya.class);
-                podtagivaniya.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(podtagivaniya);
-            }
-        });
+//        podtagivaniya_button =  findViewById(R.id.podtagivaniya_button);
+//
+//        podtagivaniya_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent podtagivaniya = new Intent(getApplicationContext(), podtagivaniya.class);
+//                podtagivaniya.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                startActivity(podtagivaniya);
+//            }
+//        });
     
         otgimaniya_button = findViewById(R.id.otgimaniya_button);
     

@@ -6,154 +6,158 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="750dp"
         android:layout_height="0dp"
+        android:src="@drawable/main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/main" />
+        app:layout_constraintVertical_bias="0.75">
 
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TableRow
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/otgimaniya_button"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:layout_marginStart="40px"
-                android:layout_marginLeft="40px"
-                android:layout_marginTop="40px"
-                android:layout_marginEnd="40px"
-                android:layout_marginRight="40px"
-                android:layout_marginBottom="40px"
-                android:padding="5px"
-                android:paddingLeft="5px"
-                android:paddingTop="5px"
-                android:paddingRight="5px"
-                android:paddingBottom="5px"
-                android:scaleType="fitEnd"
-                app:srcCompat="@drawable/otgimaniya_icon"
-                tools:ignore="SpeakableTextPresentCheck" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageButton
-                android:id="@+id/press_button"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:layout_marginStart="40px"
-                android:layout_marginLeft="40px"
-                android:layout_marginTop="40px"
-                android:layout_marginEnd="40px"
-                android:layout_marginRight="40px"
-                android:layout_marginBottom="40px"
-                android:padding="5px"
-                android:paddingLeft="5px"
-                android:paddingTop="5px"
-                android:paddingRight="5px"
-                android:paddingBottom="5px"
-                android:scaleType="fitStart"
-                app:srcCompat="@drawable/press_icon"
-                tools:ignore="SpeakableTextPresentCheck" />
+                <ImageButton
+                    android:id="@+id/podtagivaniya_button"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:scaleType="fitEnd"
+                    app:srcCompat="@drawable/podtagivaniya_icon"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
-        </TableRow>
+                <ImageButton
+                    android:id="@+id/planka_button"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:padding="0dp"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:scaleType="fitEnd"
+                    app:srcCompat="@drawable/planka_icon"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageButton
-                android:id="@+id/podtagivaniya_button"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:layout_marginStart="40px"
-                android:layout_marginLeft="40px"
-                android:layout_marginTop="40px"
-                android:layout_marginEnd="40px"
-                android:layout_marginRight="40px"
-                android:layout_marginBottom="40px"
-                android:paddingLeft="5px"
-                android:paddingTop="5px"
-                android:paddingRight="5px"
-                android:paddingBottom="5px"
-                android:scaleType="fitEnd"
-                app:srcCompat="@drawable/podtagivaniya_icon"
-                tools:ignore="SpeakableTextPresentCheck" />
+                <ImageButton
+                    android:id="@+id/prisedaniya_button"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:padding="0dp"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:scaleType="fitStart"
+                    app:srcCompat="@drawable/prisedaniya_icon"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
-            <ImageButton
-                android:id="@+id/planka_button"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:layout_marginStart="40px"
-                android:layout_marginLeft="40px"
-                android:layout_marginTop="40px"
-                android:layout_marginEnd="40px"
-                android:layout_marginRight="40px"
-                android:layout_marginBottom="40px"
-                android:padding="5px"
-                android:paddingLeft="5px"
-                android:paddingTop="5px"
-                android:paddingRight="5px"
-                android:paddingBottom="5px"
-                android:scaleType="fitEnd"
-                app:srcCompat="@drawable/planka_icon"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </TableRow>
+                <ImageButton
+                    android:id="@+id/chagomer_button"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:padding="0dp"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:scaleType="fitEnd"
+                    android:src="@drawable/chagomer_icon"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageButton
-                android:id="@+id/prisedaniya_button"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:layout_marginStart="40px"
-                android:layout_marginLeft="40px"
-                android:layout_marginTop="40px"
-                android:layout_marginEnd="40px"
-                android:layout_marginRight="40px"
-                android:layout_marginBottom="40px"
-                android:padding="5px"
-                android:paddingLeft="5px"
-                android:paddingTop="5px"
-                android:paddingRight="5px"
-                android:paddingBottom="5px"
-                android:scaleType="fitStart"
-                app:srcCompat="@drawable/prisedaniya_icon"
-                tools:ignore="SpeakableTextPresentCheck" />
+                <ImageButton
+                    android:id="@+id/otgimaniya_button"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:padding="0dp"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:scaleType="fitEnd"
+                    app:srcCompat="@drawable/otgimaniya_icon"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
-            <ImageButton
-                android:id="@+id/chagomer_button"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:layout_marginStart="40px"
-                android:layout_marginLeft="40px"
-                android:layout_marginTop="40px"
-                android:layout_marginEnd="40px"
-                android:layout_marginRight="40px"
-                android:layout_marginBottom="40px"
-                android:padding="5px"
-                android:paddingLeft="5px"
-                android:paddingTop="5px"
-                android:paddingRight="5px"
-                android:paddingBottom="5px"
-                android:scaleType="fitEnd"
-                android:src="@drawable/chagomer_icon"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </TableRow>
+                <ImageButton
+                    android:id="@+id/press_button"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:padding="0dp"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:scaleType="fitStart"
+                    app:srcCompat="@drawable/press_icon"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

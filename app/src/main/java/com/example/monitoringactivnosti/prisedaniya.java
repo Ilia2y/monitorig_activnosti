@@ -39,7 +39,8 @@ public class prisedaniya extends Activity implements SensorEventListener {
 	SoundPool mSoundPool;
 	AssetManager assets;
 	private double last = 0 ;
-	
+	public static float prisedaniya_kalorii = 0;
+
 	
 	@SuppressLint("MissingInflatedId")
 	@Override
@@ -82,6 +83,8 @@ public class prisedaniya extends Activity implements SensorEventListener {
 		Button down_button = findViewById(R.id.prisedaniya_timer_down);
 		CheckBox timer_chek_box = findViewById(R.id.prisedaniya_timer_checkBox);
 		Button btn = (Button) findViewById(R.id.prisedaniya_timer_start_button);
+		TextView kalorii_text = findViewById(R.id.prisedaniya_kalorii_textView);
+		kalorii_text.setVisibility(View.VISIBLE);
 		if (!timer_started) {
 			prisedaniya_total_score = 0;
 			TextView total_score_text_view = findViewById(R.id.prisedaniya_total_score);
@@ -124,6 +127,7 @@ public class prisedaniya extends Activity implements SensorEventListener {
 	
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
+		TextView kalorii_text = findViewById(R.id.prisedaniya_kalorii_textView);
 		if (!timer_started) {
 			if(pretimes <= 0) {
 				senSensorManager.unregisterListener(this);
@@ -160,7 +164,9 @@ public class prisedaniya extends Activity implements SensorEventListener {
 				
 				if (Math.abs(pitch) - last < 4 && verh) {
 					verh = false;
-					prisedaniya_total_score += 1;
+					prisedaniya_total_score ++;
+					prisedaniya_kalorii += MainActivity.massa * 0.011;
+					kalorii_text.setText(prisedaniya_kalorii + " KKal");
 					mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
 					TextView total_score_text_view = findViewById(R.id.prisedaniya_total_score);
 					total_score_text_view.setText(String.valueOf(prisedaniya_total_score));

@@ -37,6 +37,7 @@ public class otgimaniya extends Activity implements SensorEventListener {
 	private float prochloe = 5;
 	SoundPool mSoundPool;
 	AssetManager assets;
+	public static float otgimaniya_kalorii = 0;
 	
 	
 	@Override
@@ -50,6 +51,7 @@ public class otgimaniya extends Activity implements SensorEventListener {
 		obh_func.obr_check_box(findViewById(R.id.otgimaniya_timer_checkBox), findViewById(R.id.otgimaniya_timer_textView), findViewById(R.id.otgimaniya_timer_up), findViewById(R.id.otgimaniya_timer_down));
 		Switch otgimaniya_datchik_switch = findViewById(R.id.otgimaniya_datchik_switch);
 		TextView otgimaniya_total_score_text = findViewById(R.id.otgimaniya_total_score);
+		TextView otgimaniya_kalorii_text = findViewById(R.id.otgimaniya_kalorii_textView);
 		Button otgimaniya_nouse_button = findViewById(R.id.otgimaniya_nouse_button);
 		otgimaniya_datchik_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -72,6 +74,8 @@ public class otgimaniya extends Activity implements SensorEventListener {
 			public void onClick(View v)
 			{
 				otgimaniya_total_score ++;
+				otgimaniya_kalorii += MainActivity.massa * 0.011;
+				otgimaniya_kalorii_text.setText(otgimaniya_kalorii + " KKal");
 				otgimaniya_nouse_button.setText(String.valueOf(otgimaniya_total_score));
 				mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
 			}
@@ -111,6 +115,8 @@ public class otgimaniya extends Activity implements SensorEventListener {
 		TextView total_score_text_view = findViewById(R.id.otgimaniya_total_score);
 		Switch otgimaniya_datchik_switch = findViewById(R.id.otgimaniya_datchik_switch);
 		Button otgimaniya_nouse_button = findViewById(R.id.otgimaniya_nouse_button);
+		TextView kalorii_text = findViewById(R.id.otgimaniya_kalorii_textView);
+		kalorii_text.setVisibility(View.VISIBLE);
 		
 		if (!timer_started) {
 			otgimaniya_total_score = 0;
@@ -171,6 +177,7 @@ public class otgimaniya extends Activity implements SensorEventListener {
 	
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
+		TextView kalorii_text = findViewById(R.id.otgimaniya_kalorii_textView);
 		if (!timer_started) {
 			if(pretimes <= 0) {
 				senSensorManager.unregisterListener(this);
@@ -182,7 +189,9 @@ public class otgimaniya extends Activity implements SensorEventListener {
 				System.out.println(x);
 				
 				if (prochloe != x & x == 5){
-					otgimaniya_total_score += 1;
+					otgimaniya_total_score ++;
+					otgimaniya_kalorii += MainActivity.massa * 0.011;
+					kalorii_text.setText(otgimaniya_kalorii + " KKal");
 					mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
 					TextView total_score_text_view = findViewById(R.id.otgimaniya_total_score);
 					total_score_text_view.setText(String.valueOf(otgimaniya_total_score));
