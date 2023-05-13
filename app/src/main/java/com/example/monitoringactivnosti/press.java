@@ -35,6 +35,7 @@ public class press extends Activity implements SensorEventListener {
 	private float prochloe = 5;
 	SoundPool mSoundPool;
 	AssetManager assets;
+	public static float press_kalorii = 0;
 	
 	
 	@Override
@@ -78,9 +79,15 @@ public class press extends Activity implements SensorEventListener {
 		CheckBox timer_chek_box = findViewById(R.id.press_timer_checkBox);
 		Button btn = (Button) findViewById(R.id.press_timer_start_button);
 		TextView total_score_text_view = findViewById(R.id.press_total_score);
+		TextView kalorii_text = findViewById(R.id.press_kalorii_textView);
+		kalorii_text.setVisibility(View.VISIBLE);
 		
 		if (!timer_started) {
 			press_total_score = 0;
+
+			MainActivity.total_kalori += press_kalorii;
+			press_kalorii = 0;
+
 			lastUpdate = System.currentTimeMillis();
 			senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 			senProximity = senSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
@@ -119,6 +126,7 @@ public class press extends Activity implements SensorEventListener {
 	
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
+		TextView kalorii_text = findViewById(R.id.press_kalorii_textView);
 		if (!timer_started) {
 			if(pretimes <= 0) {
 				senSensorManager.unregisterListener(this);
@@ -129,7 +137,9 @@ public class press extends Activity implements SensorEventListener {
 				float x = sensorEvent.values[0];
 				
 				if (prochloe != x & x == 5){
-					press_total_score += 1;
+					press_total_score ++;
+					press_kalorii += MainActivity.massa * 0.007333;
+					kalorii_text.setText(Math.round(press_kalorii*1000)*1000 + " KKal");
 					mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
 					TextView total_score_text_view = findViewById(R.id.press_total_score);
 					total_score_text_view.setText(String.valueOf(press_total_score));

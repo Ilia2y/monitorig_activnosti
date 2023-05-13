@@ -87,6 +87,10 @@ public class prisedaniya extends Activity implements SensorEventListener {
 		kalorii_text.setVisibility(View.VISIBLE);
 		if (!timer_started) {
 			prisedaniya_total_score = 0;
+
+			MainActivity.total_kalori += prisedaniya_kalorii;
+			prisedaniya_kalorii = 0;
+
 			TextView total_score_text_view = findViewById(R.id.prisedaniya_total_score);
 //			total_score_text_view.setText(String.valueOf(prisedaniya_total_score));
 			senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -165,8 +169,8 @@ public class prisedaniya extends Activity implements SensorEventListener {
 				if (Math.abs(pitch) - last < 4 && verh) {
 					verh = false;
 					prisedaniya_total_score ++;
-					prisedaniya_kalorii += MainActivity.massa * 0.011;
-					kalorii_text.setText(prisedaniya_kalorii + " KKal");
+					prisedaniya_kalorii += MainActivity.massa * 0.0077;
+					kalorii_text.setText(Math.round(prisedaniya_kalorii*1000)*1000 + " KKal");
 					mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
 					TextView total_score_text_view = findViewById(R.id.prisedaniya_total_score);
 					total_score_text_view.setText(String.valueOf(prisedaniya_total_score));

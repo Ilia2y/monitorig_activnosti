@@ -28,6 +28,7 @@ public class planka extends Activity implements SensorEventListener {
 	int planka_total_score = 0;
 	private long lastUpdate = 0;
 	private float prochloe = 5;
+	public static float planka_kalorii = 0;
 	
 	
 	@Override
@@ -104,6 +105,10 @@ public class planka extends Activity implements SensorEventListener {
 	public void planka_on_timer_start(View view) {
 		if (!timer_started) {
 			planka_total_score = 0;
+
+			MainActivity.total_kalori += planka_kalorii;
+			planka_kalorii = 0;
+
 			lastUpdate = System.currentTimeMillis();
 			senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 			senProximity = senSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
@@ -111,6 +116,8 @@ public class planka extends Activity implements SensorEventListener {
 			timer_started = true;
 			timem = 0;
 			times = 0;
+			TextView kalorii_text = findViewById(R.id.planka_kalorii_textView);
+			kalorii_text.setVisibility(View.VISIBLE);
 			
 			Button btn = (Button) findViewById(R.id.planka_timer_start_button);
 			btn.setBackgroundColor(Color.parseColor("#2E23C5"));
@@ -124,6 +131,8 @@ public class planka extends Activity implements SensorEventListener {
 						@Override
 						public void run() {
 							otgimaniya_timer_textView.setText(update_timer(1));
+							planka_kalorii += MainActivity.massa * 0.0009777777777777783;
+							kalorii_text.setText(Math.round(planka_kalorii*1000)*1000 + " KKal");
 							if (times <= 0 & timem <= 0) {
 								timertask.cancel();
 								otgimaniya_timer_textView.setText("Time Over");

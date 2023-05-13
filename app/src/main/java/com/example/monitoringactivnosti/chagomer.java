@@ -1,5 +1,7 @@
 package com.example.monitoringactivnosti;
 
+import static java.lang.Math.atan2;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -30,6 +32,8 @@ public class chagomer extends Activity implements SensorEventListener {
 	AssetManager assets;
 	Timer timer = new Timer();
 	static TimerTask timertask;
+	private double last = 0 ;
+	public static float chagomer_kalorii = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanseStatte) {
@@ -72,9 +76,15 @@ public class chagomer extends Activity implements SensorEventListener {
 		CheckBox timer_chek_box = findViewById(R.id.chagomer_timer_checkBox);
 		Button btn = findViewById(R.id.chagomer_timer_start_button);
 		TextView total_score_text_view = findViewById(R.id.chagomer_total_score);
+		TextView kalorii_text = findViewById(R.id.chagomer_kalorii_textView);
+		kalorii_text.setVisibility(View.VISIBLE);
 		
 		if (!timer_started) {
 			chagomer_total_score = 0;
+
+			MainActivity.total_kalori += chagomer_kalorii;
+			chagomer_kalorii = 0;
+
 			senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 			senRotationVector = senSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 			senSensorManager.registerListener(this, senRotationVector, SensorManager.SENSOR_DELAY_NORMAL);
@@ -114,54 +124,59 @@ public class chagomer extends Activity implements SensorEventListener {
 	
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
-		if(!beep) {
-			if (!timer_started) {
-				if(pretimes <= 0) {
-					senSensorManager.unregisterListener(this);
-				}
-			} else {
-				Sensor mySensor = sensorEvent.sensor;
-				if (mySensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
-					float w = sensorEvent.values[0];
-					float x = sensorEvent.values[1];
-					float y = sensorEvent.values[2];
-					float z = sensorEvent.values[3];
-//				double theta = Math.acos(sensorEvent.values[3]) * 2;
-//				double sinv = Math.sin(theta / 2);
+		TextView kalorii_text = findViewById(R.id.chagomer_kalorii_textView);
+		if (!timer_started) {
+			if(pretimes <= 0) {
+				senSensorManager.unregisterListener(this);
+			}
+		} else {
+			Sensor mySensor = sensorEvent.sensor;
+			if (mySensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
+				float w = sensorEvent.values[0];
+				float x = sensorEvent.values[1];
+				float y = sensorEvent.values[2];
+				float z = sensorEvent.values[3];
+//			double theta = Math.acos(sensorEvent.values[3]) * 2;
+//			double sinv = Math.sin(theta / 2);
 //
-//				xa = sensorEvent.values[0] / sinv;
-//				ya = sensorEvent.values[1] / sinv;
-//				za = sensorEvent.values[2] / sinv;
-					
-					double sinp = 2 * (w * y - z * x);
-					if (Math.abs(sinp) >= 1) {
-						pitch = (float) Math.copySign(Math.PI / 2, sinp); // use 90 degrees if out of range
-					} else {
-						pitch = (float) Math.asin(sinp);
-					}
-					pitch = pitch / kalibrovka * 90;
-//				System.out.println(pitch);
-//
-//				System.out.println(xa + " " + ya + " " + za);
-//					System.out.println(String.valueOf(x) + " " + String.valueOf(y) + " " + String.valueOf(z));
-					
-					if (Math.abs(pitch) < 20 && verh) {
-						verh = false;
-						chagomer_total_score += 1;
-						mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
-						TextView total_score_text_view = findViewById(R.id.chagomer_total_score);
-						total_score_text_view.setText(String.valueOf(chagomer_total_score));
-						System.out.println(chagomer_total_score);
-					} else {
-						if (Math.abs(pitch) > 23 && !verh) {
-							verh = true;
-						}
-//					if(Math.abs(pitch) > koff && !verh && prohod){
-//						verh = true;
-//						prohod = false;
-//					}
-					}
+//			xa = sensorEvent.values[0] / sinv;
+//			ya = sensorEvent.values[1] / sinv;
+//			za = sensorEvent.values[2] / sinv;
+
+				double sinp = 2 * (w * y - z * x);
+
+				double roll = atan2(2 * (z * w + x * y), 1 - 2 * (y*y + z*z));
+
+				if (Math.abs(sinp) >= 1) {
+					pitch = (float) Math.copySign(Math.PI / 2, sinp); // use 90 degrees if out of range
+				} else {
+					pitch = (float) Math.asin(sinp);
 				}
+				pitch = pitch / kalibrovka * 90;
+				double angle = pitch * roll;
+
+//
+//			System.out.println(xa + " " + ya + " " + za);
+//				System.out.println(String.valueOf(x) + " " + String.valueOf(y) + " " + String.valueOf(z));
+
+				if (Math.abs(pitch) - last < 4 && verh) {
+					verh = false;
+					chagomer_total_score ++;
+					chagomer_kalorii += MainActivity.massa * 0.011;
+					kalorii_text.setText(Math.round(chagomer_kalorii*1000)*1000 + " KKal");
+					mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
+					TextView total_score_text_view = findViewById(R.id.chagomer_total_score);
+					total_score_text_view.setText(String.valueOf(chagomer_total_score));
+				} else {
+					if (Math.abs(pitch) - last > 4 && !verh) {
+						verh = true;
+					}
+//				if(Math.abs(pitch) > koff && !verh && prohod){
+//					verh = true;
+//					prohod = false;
+//				}
+				}
+				last = Math.abs(pitch);
 			}
 		}
 	}

@@ -3,10 +3,8 @@ package com.example.monitoringactivnosti;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -24,7 +22,7 @@ import android.widget.TextView;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class otgimaniya extends Activity implements SensorEventListener {
+public class berpi extends Activity implements SensorEventListener {
 	public int timem, times;
 	private int  t_beep_sound, c_beep_sound, pretimes;
 	private Boolean timer_started = false, beep = true;
@@ -32,60 +30,61 @@ public class otgimaniya extends Activity implements SensorEventListener {
 	TimerTask timertask;
 	private SensorManager senSensorManager;
 	private Sensor senProximity;
-	int otgimaniya_total_score = 0;
+	int berpi_total_score = 0;
 	private long lastUpdate = 0;
 	private float prochloe = 5;
 	SoundPool mSoundPool;
 	AssetManager assets;
-	public static float otgimaniya_kalorii = 0;
+	public static float berpi_kalorii = 0;
 	
 	
+	@SuppressLint("MissingInflatedId")
 	@Override
 	protected void onCreate(Bundle savedInstanseStatte) {
 		super.onCreate(savedInstanseStatte);
-		setContentView(R.layout.otgimaniya);
+		setContentView(R.layout.berpi);
 		mSoundPool = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
 		assets = getAssets();
 		t_beep_sound = obh_func.loadSound(obh_func.timer_sound_file_name, assets, mSoundPool);
 		c_beep_sound = obh_func.loadSound(obh_func.chetchik_sound_file_name, assets, mSoundPool);
-		obh_func.obr_check_box(findViewById(R.id.otgimaniya_timer_checkBox), findViewById(R.id.otgimaniya_timer_textView), findViewById(R.id.otgimaniya_timer_up), findViewById(R.id.otgimaniya_timer_down));
-		Switch otgimaniya_datchik_switch = findViewById(R.id.otgimaniya_datchik_switch);
-		TextView otgimaniya_total_score_text = findViewById(R.id.otgimaniya_total_score);
-		TextView otgimaniya_kalorii_text = findViewById(R.id.otgimaniya_kalorii_textView);
-		Button otgimaniya_nouse_button = findViewById(R.id.otgimaniya_nouse_button);
-		otgimaniya_datchik_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+		obh_func.obr_check_box(findViewById(R.id.berpi_timer_checkBox), findViewById(R.id.berpi_timer_textView), findViewById(R.id.berpi_timer_up), findViewById(R.id.berpi_timer_down));
+		Switch berpi_datchik_switch = findViewById(R.id.berpi_datchik_switch);
+		TextView berpi_total_score_text = findViewById(R.id.berpi_total_score);
+		TextView berpi_kalorii_text = findViewById(R.id.berpi_kalorii_textView);
+		Button berpi_nouse_button = findViewById(R.id.berpi_nouse_button);
+		berpi_datchik_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked) {
-					otgimaniya_datchik_switch.setText(otgimaniya_datchik_switch.getTextOn());
-					otgimaniya_total_score_text.setVisibility(View.INVISIBLE);
-					otgimaniya_nouse_button.setVisibility(View.VISIBLE);
+					berpi_datchik_switch.setText(berpi_datchik_switch.getTextOn());
+					berpi_total_score_text.setVisibility(View.INVISIBLE);
+					berpi_nouse_button.setVisibility(View.VISIBLE);
 
 				}
 				else {
-					otgimaniya_datchik_switch.setText(otgimaniya_datchik_switch.getTextOff());
-					otgimaniya_total_score_text.setVisibility(View.VISIBLE);
-					otgimaniya_nouse_button.setVisibility(View.INVISIBLE);
+					berpi_datchik_switch.setText(berpi_datchik_switch.getTextOff());
+					berpi_total_score_text.setVisibility(View.VISIBLE);
+					berpi_nouse_button.setVisibility(View.INVISIBLE);
 
 				}
 			}
 		});
-		otgimaniya_nouse_button.setOnClickListener(new View.OnClickListener() {
+		berpi_nouse_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{
-				otgimaniya_total_score ++;
-				otgimaniya_kalorii += MainActivity.massa * 0.011;
-				otgimaniya_kalorii_text.setText(otgimaniya_kalorii + " KKal");
-				otgimaniya_nouse_button.setText(String.valueOf(otgimaniya_total_score));
+				berpi_total_score ++;
+				berpi_kalorii += MainActivity.massa * 0.011;
+				berpi_kalorii_text.setText(berpi_kalorii + " KKal");
+				berpi_nouse_button.setText(String.valueOf(berpi_total_score));
 				mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
 			}
 		});
-		otgimaniya_nouse_button.setEnabled(false);
+		berpi_nouse_button.setEnabled(false);
 	}
 	
-	public void otgimaniya_on_up_button_click(View view) {
+	public void berpi_on_up_button_click(View view) {
 		if (!timer_started) {
-			TextView timer_textView = findViewById(R.id.otgimaniya_timer_textView);
+			TextView timer_textView = findViewById(R.id.berpi_timer_textView);
 			String buff = obh_func.update_timer(5, timem, times);
 			String[] subStr;
 			timer_textView.setText(buff);
@@ -95,9 +94,9 @@ public class otgimaniya extends Activity implements SensorEventListener {
 		}
 	}
 	
-	public void otgimaniya_on_down_button_click(View view) {
+	public void berpi_on_down_button_click(View view) {
 		if (!timer_started) {
-			TextView timer_textView = findViewById(R.id.otgimaniya_timer_textView);
+			TextView timer_textView = findViewById(R.id.berpi_timer_textView);
 			String buff = obh_func.update_timer(-5, timem, times);
 			String[] subStr;
 			timer_textView.setText(buff);
@@ -107,34 +106,34 @@ public class otgimaniya extends Activity implements SensorEventListener {
 		}
 	}
 	
-	public void otgimaniya_on_timer_start(View view) {
-		Button up_button = findViewById(R.id.otgimaniya_timer_up);
-		Button down_button = findViewById(R.id.otgimaniya_timer_down);
-		CheckBox timer_chek_box = findViewById(R.id.otgimaniya_timer_checkBox);
-		Button btn = (Button) findViewById(R.id.otgimaniya_timer_start_button);
-		TextView total_score_text_view = findViewById(R.id.otgimaniya_total_score);
-		Switch otgimaniya_datchik_switch = findViewById(R.id.otgimaniya_datchik_switch);
-		Button otgimaniya_nouse_button = findViewById(R.id.otgimaniya_nouse_button);
-		TextView kalorii_text = findViewById(R.id.otgimaniya_kalorii_textView);
+	public void berpi_on_timer_start(View view) {
+		Button up_button = findViewById(R.id.berpi_timer_up);
+		Button down_button = findViewById(R.id.berpi_timer_down);
+		CheckBox timer_chek_box = findViewById(R.id.berpi_timer_checkBox);
+		Button btn = (Button) findViewById(R.id.berpi_timer_start_button);
+		TextView total_score_text_view = findViewById(R.id.berpi_total_score);
+		Switch berpi_datchik_switch = findViewById(R.id.berpi_datchik_switch);
+		Button berpi_nouse_button = findViewById(R.id.berpi_nouse_button);
+		TextView kalorii_text = findViewById(R.id.berpi_kalorii_textView);
 		kalorii_text.setVisibility(View.VISIBLE);
 		
 		if (!timer_started) {
-			otgimaniya_total_score = 0;
+			berpi_total_score = 0;
 
-			MainActivity.total_kalori += otgimaniya_kalorii;
-			otgimaniya_kalorii = 0;
+			MainActivity.total_kalori += berpi_kalorii;
+			berpi_kalorii = 0;
 
-			if(!otgimaniya_datchik_switch.isChecked()) {
+			if(!berpi_datchik_switch.isChecked()) {
 				lastUpdate = System.currentTimeMillis();
 				senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 				senProximity = senSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 				senSensorManager.registerListener(this, senProximity, SensorManager.SENSOR_DELAY_NORMAL);
 			}else{
-				otgimaniya_nouse_button.setText("0");
+				berpi_nouse_button.setText("0");
 			}
 			beep = true;
-			TextView otgimaniya_timer_textView = findViewById(R.id.otgimaniya_timer_textView);
-			otgimaniya_datchik_switch.setVisibility(View.INVISIBLE);
+			TextView berpi_timer_textView = findViewById(R.id.berpi_timer_textView);
+			berpi_datchik_switch.setVisibility(View.INVISIBLE);
 			
 			pretimes = obh_func.on_timer_start(up_button, down_button, timer_chek_box, btn, total_score_text_view);
 			
@@ -145,18 +144,18 @@ public class otgimaniya extends Activity implements SensorEventListener {
 						runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
-								String[] buffer = obh_func.timer_update(otgimaniya_timer_textView, beep, mSoundPool, t_beep_sound, times, timem, btn, up_button, down_button, timer_chek_box, timer_started, pretimes, timertask).split(",");
+								String[] buffer = obh_func.timer_update(berpi_timer_textView, beep, mSoundPool, t_beep_sound, times, timem, btn, up_button, down_button, timer_chek_box, timer_started, pretimes, timertask).split(",");
 								beep = Boolean.valueOf(buffer[0]);
 								timer_started = Boolean.valueOf(buffer[1]);
 								pretimes = Integer.parseInt(buffer[2]);
 								timem = Integer.parseInt(buffer[3]);
 								times = Integer.parseInt(buffer[4]);
 								if(pretimes <= 0){
-									otgimaniya_nouse_button.setEnabled(true);
+									berpi_nouse_button.setEnabled(true);
 								}
 								if (times <= 0 & timem <= 0) {
-									otgimaniya_nouse_button.setEnabled(false);
-									otgimaniya_datchik_switch.setVisibility(View.VISIBLE);
+									berpi_nouse_button.setEnabled(false);
+									berpi_datchik_switch.setVisibility(View.VISIBLE);
 								}
 							}
 						});
@@ -164,15 +163,15 @@ public class otgimaniya extends Activity implements SensorEventListener {
 				}, 0, 1000);
 			}else{
 				timer_started = true;
-				otgimaniya_nouse_button.setEnabled(true);
-				otgimaniya_datchik_switch.setVisibility(View.INVISIBLE);
+				berpi_nouse_button.setEnabled(true);
+				berpi_datchik_switch.setVisibility(View.INVISIBLE);
 			}
 		} else {
-			if(!otgimaniya_datchik_switch.isChecked()) {
+			if(!berpi_datchik_switch.isChecked()) {
 				senSensorManager.unregisterListener(this);
 			}else{
-				otgimaniya_nouse_button.setEnabled(false);
-				otgimaniya_datchik_switch.setVisibility(View.VISIBLE);
+				berpi_nouse_button.setEnabled(false);
+				berpi_datchik_switch.setVisibility(View.VISIBLE);
 			}
 			
 			timer_started = obh_func.on_timer_not_started(timer_chek_box, btn, up_button, down_button, timertask, timer_started);
@@ -181,7 +180,7 @@ public class otgimaniya extends Activity implements SensorEventListener {
 	
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
-		TextView kalorii_text = findViewById(R.id.otgimaniya_kalorii_textView);
+		TextView kalorii_text = findViewById(R.id.berpi_kalorii_textView);
 		if (!timer_started) {
 			if(pretimes <= 0) {
 				senSensorManager.unregisterListener(this);
@@ -193,12 +192,12 @@ public class otgimaniya extends Activity implements SensorEventListener {
 				System.out.println(x);
 				
 				if (prochloe != x & x == 5){
-					otgimaniya_total_score ++;
-					otgimaniya_kalorii += MainActivity.massa * 0.011;
-					kalorii_text.setText(Math.round(otgimaniya_kalorii*1000)*1000 + " KKal");
+					berpi_total_score ++;
+					berpi_kalorii += MainActivity.massa * 0.033;
+					kalorii_text.setText(Math.round(berpi_kalorii*1000)*1000 + " KKal");
 					mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
-					TextView total_score_text_view = findViewById(R.id.otgimaniya_total_score);
-					total_score_text_view.setText(String.valueOf(otgimaniya_total_score));
+					TextView total_score_text_view = findViewById(R.id.berpi_total_score);
+					total_score_text_view.setText(String.valueOf(berpi_total_score));
 				}
 				prochloe = x;
 			}
@@ -210,7 +209,7 @@ public class otgimaniya extends Activity implements SensorEventListener {
 	
 	}
 	
-	public void otgimaniya_back(View view){
+	public void berpi_back(View view){
 		Intent main_activity = new Intent(getApplicationContext(), MainActivity.class);
 		main_activity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		startActivity(main_activity);

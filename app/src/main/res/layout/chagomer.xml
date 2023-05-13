@@ -6,15 +6,46 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/chagomer_kalorii_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="KKal"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/chagomer_timer_checkBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chagomer_total_score"
+        app:layout_constraintVertical_bias="0.9"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Шагомер"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#000000"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16" />
+        app:layout_constraintVertical_bias="0.9" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Таймер"
+        android:textColor="#000000"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/chagomer_timer_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.87" />
 
     <TextView
         android:id="@+id/chagomer_timer_textView"
@@ -26,16 +57,16 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.437"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.33" />
+        app:layout_constraintVertical_bias="0.44" />
 
     <Button
         android:id="@+id/chagomer_timer_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#6200ED"
+        android:background="#A30C0C"
+        android:backgroundTint="#A30C0C"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:onClick="chagomer_on_up_button_click"
@@ -46,16 +77,17 @@
         app:iconPadding="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.715"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toEndOf="@+id/chagomer_timer_textView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.298" />
+        app:layout_constraintVertical_bias="0.42000002" />
 
     <Button
         android:id="@+id/chagomer_timer_down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#6200ED"
+        android:background="#A30C0C"
+        android:backgroundTint="#A30C0C"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:onClick="chagomer_on_down_button_click"
@@ -66,8 +98,8 @@
         app:iconPadding="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.715"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toEndOf="@+id/chagomer_timer_textView"
         app:layout_constraintTop_toBottomOf="@+id/chagomer_timer_up"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -78,10 +110,11 @@
         android:text="0"
         android:textColor="#000000"
         android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/chagomer_timer_start_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/chagomer_timer_textView"
+        app:layout_constraintVertical_bias="0.3" />
 
     <Button
         android:id="@+id/chagomer_timer_start_button"
@@ -89,10 +122,9 @@
         android:layout_height="wrap_content"
         android:background="#6200ED"
         android:onClick="chagomer_on_timer_start"
-        android:text="Button"
+        android:text="Начать"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.95" />
@@ -108,21 +140,21 @@
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintHorizontal_bias="0.04"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.024" />
+        app:layout_constraintVertical_bias="0.02" />
 
     <CheckBox
         android:id="@+id/chagomer_timer_checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checked="true"
-        android:text="CheckBox"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Включить таймер"
+        app:layout_constraintBottom_toTopOf="@+id/chagomer_timer_start_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.88" />
+        app:layout_constraintTop_toBottomOf="@+id/chagomer_total_score"
+        app:layout_constraintVertical_bias="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

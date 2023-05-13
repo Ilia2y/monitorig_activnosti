@@ -49,6 +49,8 @@
             android:name = ".prisedaniya" />
         <activity
             android:name = ".chagomer" />
+        <activity
+            android:name = ".berpi" />
     </application>
 
     <uses-permission android:name="android.permission.CAMERA"/>
