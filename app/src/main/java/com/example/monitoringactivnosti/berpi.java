@@ -36,6 +36,7 @@ public class berpi extends Activity implements SensorEventListener {
 	SoundPool mSoundPool;
 	AssetManager assets;
 	public static float berpi_kalorii = 0;
+	private int kolvo_za_vrem = 0;
 	
 	
 	@SuppressLint("MissingInflatedId")
@@ -73,7 +74,12 @@ public class berpi extends Activity implements SensorEventListener {
 			public void onClick(View v)
 			{
 				berpi_total_score ++;
-				berpi_kalorii += MainActivity.massa * 0.011;
+				if(kolvo_za_vrem > 0){
+					berpi_kalorii += MainActivity.massa * 0.066;
+				}else {
+					berpi_kalorii += MainActivity.massa * 0.033;
+				}
+				kolvo_za_vrem = 0;
 				berpi_kalorii_text.setText(berpi_kalorii + " KKal");
 				berpi_nouse_button.setText(String.valueOf(berpi_total_score));
 				mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
@@ -146,6 +152,7 @@ public class berpi extends Activity implements SensorEventListener {
 							public void run() {
 								String[] buffer = obh_func.timer_update(berpi_timer_textView, beep, mSoundPool, t_beep_sound, times, timem, btn, up_button, down_button, timer_chek_box, timer_started, pretimes, timertask).split(",");
 								beep = Boolean.valueOf(buffer[0]);
+								kolvo_za_vrem ++;
 								timer_started = Boolean.valueOf(buffer[1]);
 								pretimes = Integer.parseInt(buffer[2]);
 								timem = Integer.parseInt(buffer[3]);
@@ -193,7 +200,12 @@ public class berpi extends Activity implements SensorEventListener {
 				
 				if (prochloe != x & x == 5){
 					berpi_total_score ++;
-					berpi_kalorii += MainActivity.massa * 0.033;
+					if(kolvo_za_vrem > 0){
+						berpi_kalorii += MainActivity.massa * 0.066;
+					}else {
+						berpi_kalorii += MainActivity.massa * 0.033;
+					}
+					kolvo_za_vrem = 0;
 					kalorii_text.setText(Math.round(berpi_kalorii*1000)*1000 + " KKal");
 					mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
 					TextView total_score_text_view = findViewById(R.id.berpi_total_score);

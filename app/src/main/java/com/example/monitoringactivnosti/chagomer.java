@@ -34,6 +34,7 @@ public class chagomer extends Activity implements SensorEventListener {
 	static TimerTask timertask;
 	private double last = 0 ;
 	public static float chagomer_kalorii = 0;
+	private int kolvo_za_vrem = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanseStatte) {
@@ -104,6 +105,7 @@ public class chagomer extends Activity implements SensorEventListener {
 								String[] buffer = obh_func.timer_update(chagomer_timer_textView, beep, mSoundPool, t_beep_sound, times, timem, btn, up_button, down_button, timer_chek_box, timer_started, pretimes, timertask).split(",");
 								beep = Boolean.valueOf(buffer[0]);
 								timer_started = Boolean.valueOf(buffer[1]);
+								kolvo_za_vrem ++;
 								pretimes = Integer.parseInt(buffer[2]);
 								timem = Integer.parseInt(buffer[3]);
 								times = Integer.parseInt(buffer[4]);
@@ -162,7 +164,12 @@ public class chagomer extends Activity implements SensorEventListener {
 				if (Math.abs(pitch) - last < 4 && verh) {
 					verh = false;
 					chagomer_total_score ++;
-					chagomer_kalorii += MainActivity.massa * 0.011;
+					if(kolvo_za_vrem > 0){
+						chagomer_kalorii += MainActivity.massa * 0.022;
+					}else {
+						chagomer_kalorii += MainActivity.massa * 0.011;
+					}
+					kolvo_za_vrem = 0;
 					kalorii_text.setText(Math.round(chagomer_kalorii*1000)*1000 + " KKal");
 					mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
 					TextView total_score_text_view = findViewById(R.id.chagomer_total_score);

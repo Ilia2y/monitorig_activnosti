@@ -36,6 +36,8 @@ public class press extends Activity implements SensorEventListener {
 	SoundPool mSoundPool;
 	AssetManager assets;
 	public static float press_kalorii = 0;
+	private int kolvo_za_vrem = 0;
+
 	
 	
 	@Override
@@ -106,6 +108,7 @@ public class press extends Activity implements SensorEventListener {
 							public void run() {
 								String[] buffer = obh_func.timer_update(press_timer_textView, beep, mSoundPool, t_beep_sound, times, timem, btn, up_button, down_button, timer_chek_box, timer_started, pretimes, timertask).split(",");
 								beep = Boolean.valueOf(buffer[0]);
+								kolvo_za_vrem ++;
 								timer_started = Boolean.valueOf(buffer[1]);
 								pretimes = Integer.parseInt(buffer[2]);
 								timem = Integer.parseInt(buffer[3]);
@@ -138,7 +141,12 @@ public class press extends Activity implements SensorEventListener {
 				
 				if (prochloe != x & x == 5){
 					press_total_score ++;
-					press_kalorii += MainActivity.massa * 0.007333;
+					if(kolvo_za_vrem > 0){
+						press_kalorii += MainActivity.massa * 0.014666;
+					}else {
+						press_kalorii += MainActivity.massa * 0.007333;
+					}
+					kolvo_za_vrem = 0;
 					kalorii_text.setText(Math.round(press_kalorii*1000)*1000 + " KKal");
 					mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
 					TextView total_score_text_view = findViewById(R.id.press_total_score);
