@@ -13,7 +13,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone" />
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -35,25 +36,6 @@
                 android:layout_height="match_parent">
 
                 <ImageButton
-                    android:id="@+id/otgimaniya_button"
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:padding="0dp"
-                    android:paddingLeft="0dp"
-                    android:paddingTop="0dp"
-                    android:paddingRight="0dp"
-                    android:paddingBottom="0dp"
-                    android:scaleType="fitEnd"
-                    app:srcCompat="@drawable/otgimaniya_icon"
-                    tools:ignore="SpeakableTextPresentCheck" />
-
-                <ImageButton
                     android:id="@+id/press_button"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
@@ -69,8 +51,25 @@
                     android:paddingRight="0dp"
                     android:paddingBottom="0dp"
                     android:scaleType="fitStart"
-                    app:srcCompat="@drawable/press_icon"
+                    app:srcCompat="@drawable/press"
                     tools:ignore="SpeakableTextPresentCheck" />
+
+                <ImageButton
+                    android:id="@+id/otgimaniya_button"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_margin="20dp"
+                    android:contentDescription="otgimaniya"
+                    android:padding="0dp"
+                    android:paddingStart="0dp"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingEnd="0dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:scaleType="fitStart"
+                    app:srcCompat="@drawable/otgim" />
+
             </TableRow>
 
             <TableRow
@@ -92,7 +91,7 @@
                     android:paddingRight="0dp"
                     android:paddingBottom="0dp"
                     android:scaleType="fitEnd"
-                    app:srcCompat="@drawable/podtagivaniya_icon"
+                    app:srcCompat="@drawable/podtyagivanie"
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <ImageButton
@@ -111,7 +110,7 @@
                     android:paddingRight="0dp"
                     android:paddingBottom="0dp"
                     android:scaleType="fitEnd"
-                    app:srcCompat="@drawable/planka_icon"
+                    app:srcCompat="@drawable/planka11"
                     tools:ignore="SpeakableTextPresentCheck" />
             </TableRow>
 
@@ -135,7 +134,7 @@
                     android:paddingRight="0dp"
                     android:paddingBottom="0dp"
                     android:scaleType="fitStart"
-                    app:srcCompat="@drawable/prisedaniya_icon"
+                    app:srcCompat="@drawable/prised"
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <ImageButton
@@ -154,7 +153,7 @@
                     android:paddingRight="0dp"
                     android:paddingBottom="0dp"
                     android:scaleType="fitEnd"
-                    android:src="@drawable/chagomer_icon"
+                    android:src="@drawable/shag"
                     tools:ignore="SpeakableTextPresentCheck" />
             </TableRow>
 
