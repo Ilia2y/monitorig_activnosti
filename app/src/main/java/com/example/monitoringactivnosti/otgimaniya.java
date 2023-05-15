@@ -82,7 +82,7 @@ public class otgimaniya extends Activity implements SensorEventListener {
 					otgimaniya_kalorii += MainActivity.massa * 0.011;
 				}
 				kolvo_za_vrem = 0;
-				otgimaniya_kalorii_text.setText(otgimaniya_kalorii + " KKal");
+				otgimaniya_kalorii_text.setText(Math.round(otgimaniya_kalorii*1000)/1000 + " KKal");
 				otgimaniya_nouse_button.setText(String.valueOf(otgimaniya_total_score));
 				mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
 			}
@@ -198,17 +198,17 @@ public class otgimaniya extends Activity implements SensorEventListener {
 			Sensor mySensor = sensorEvent.sensor;
 			if (mySensor.getType() == Sensor.TYPE_PROXIMITY) {
 				float x = sensorEvent.values[0];
-				System.out.println(x);
+				System.out.println(x);MainActivity.total_kalori += otgimaniya_kalorii;
 				
 				if (prochloe != x & x == 5){
 					otgimaniya_total_score ++;
-					if(kolvo_za_vrem > 0){
+					if(kolvo_za_vrem < 1){
 						otgimaniya_kalorii += MainActivity.massa * 0.022;
 					}else {
 						otgimaniya_kalorii += MainActivity.massa * 0.011;
 					}
 					kolvo_za_vrem = 0;
-					kalorii_text.setText(Math.round(otgimaniya_kalorii*1000)*1000 + " KKal");
+					kalorii_text.setText(Math.round(otgimaniya_kalorii*1000)/1000 + " KKal");
 					mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
 					TextView total_score_text_view = findViewById(R.id.otgimaniya_total_score);
 					total_score_text_view.setText(String.valueOf(otgimaniya_total_score));
@@ -224,6 +224,7 @@ public class otgimaniya extends Activity implements SensorEventListener {
 	}
 	
 	public void otgimaniya_back(View view){
+		MainActivity.total_kalori += otgimaniya_kalorii;
 		Intent main_activity = new Intent(getApplicationContext(), MainActivity.class);
 		main_activity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		startActivity(main_activity);

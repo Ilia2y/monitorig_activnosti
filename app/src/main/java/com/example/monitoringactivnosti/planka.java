@@ -132,7 +132,7 @@ public class planka extends Activity implements SensorEventListener {
 						public void run() {
 							otgimaniya_timer_textView.setText(update_timer(1));
 							planka_kalorii += MainActivity.massa * 0.0009777777777777783;
-							kalorii_text.setText(Math.round(planka_kalorii*1000)*1000 + " KKal");
+							kalorii_text.setText(Math.round(planka_kalorii*1000)/1000 + " KKal");
 							if (times <= 0 & timem <= 0) {
 								timertask.cancel();
 								otgimaniya_timer_textView.setText("Time Over");
@@ -182,6 +182,7 @@ public class planka extends Activity implements SensorEventListener {
 	}
 	
 	public void planka_back(View view){
+		MainActivity.total_kalori += planka_kalorii;
 		Intent main_activity = new Intent(getApplicationContext(), MainActivity.class);
 		main_activity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		startActivity(main_activity);

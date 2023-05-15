@@ -20,6 +20,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
     ImageButton podtagivaniya_button, otgimaniya_button, press_button, planka_button, prisedaniya_button, chagomer_button, berpi_button;
+    EditText massa_editText;
     Button sohranit_button;
     TextView vsego_kalorii_text;
 
@@ -91,15 +92,20 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(podtagivaniya);
 //            }
 //        });
+        openText();
+
+        massa_editText = findViewById(R.id.massa_editText);
+        massa_editText.setText(String.valueOf(massa));
 
         vsego_kalorii_text = findViewById(R.id.vsego_kalorii);
-        vsego_kalorii_text.setText(Math.round(total_kalori*1000)*1000 + " KKal");
+        vsego_kalorii_text.setText(Math.round(total_kalori*1000)/1000 + " KKal");
 
         sohranit_button = findViewById(R.id.sohranit_button);
         sohranit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                massa = Integer.parseInt(String.valueOf(massa_editText.getText()));
+                saveText();
             }
         });
     

@@ -171,13 +171,13 @@ public class prisedaniya extends Activity implements SensorEventListener {
 				if (Math.abs(pitch) - last < 4 && verh) {
 					verh = false;
 					prisedaniya_total_score ++;
-					if(kolvo_za_vrem > 0){
+					if(kolvo_za_vrem < 1){
 						prisedaniya_kalorii += MainActivity.massa * 0.0154;
 					}else {
 						prisedaniya_kalorii += MainActivity.massa * 0.0077;
 					}
 					kolvo_za_vrem = 0;
-					kalorii_text.setText(Math.round(prisedaniya_kalorii*1000)*1000 + " KKal");
+					kalorii_text.setText(Math.round(prisedaniya_kalorii*1000)/1000 + " KKal");
 					mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
 					TextView total_score_text_view = findViewById(R.id.prisedaniya_total_score);
 					total_score_text_view.setText(String.valueOf(prisedaniya_total_score));
@@ -202,6 +202,7 @@ public class prisedaniya extends Activity implements SensorEventListener {
 	}
 	
 	public void prisedaniya_back(View view){
+		MainActivity.total_kalori += prisedaniya_kalorii;
 		Intent main_activity = new Intent(getApplicationContext(), MainActivity.class);
 		main_activity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		startActivity(main_activity);

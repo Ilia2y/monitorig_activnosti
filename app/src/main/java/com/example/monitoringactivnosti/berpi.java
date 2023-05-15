@@ -74,13 +74,13 @@ public class berpi extends Activity implements SensorEventListener {
 			public void onClick(View v)
 			{
 				berpi_total_score ++;
-				if(kolvo_za_vrem > 0){
+				if(kolvo_za_vrem < 1){
 					berpi_kalorii += MainActivity.massa * 0.066;
 				}else {
 					berpi_kalorii += MainActivity.massa * 0.033;
 				}
 				kolvo_za_vrem = 0;
-				berpi_kalorii_text.setText(berpi_kalorii + " KKal");
+				berpi_kalorii_text.setText(Math.round(berpi_kalorii*1000)/1000 + " KKal");
 				berpi_nouse_button.setText(String.valueOf(berpi_total_score));
 				mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
 			}
@@ -200,13 +200,13 @@ public class berpi extends Activity implements SensorEventListener {
 				
 				if (prochloe != x & x == 5){
 					berpi_total_score ++;
-					if(kolvo_za_vrem > 0){
+					if(kolvo_za_vrem < 1){
 						berpi_kalorii += MainActivity.massa * 0.066;
 					}else {
 						berpi_kalorii += MainActivity.massa * 0.033;
 					}
 					kolvo_za_vrem = 0;
-					kalorii_text.setText(Math.round(berpi_kalorii*1000)*1000 + " KKal");
+					kalorii_text.setText(Math.round(berpi_kalorii*1000)/1000 + " KKal");
 					mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
 					TextView total_score_text_view = findViewById(R.id.berpi_total_score);
 					total_score_text_view.setText(String.valueOf(berpi_total_score));
@@ -222,6 +222,7 @@ public class berpi extends Activity implements SensorEventListener {
 	}
 	
 	public void berpi_back(View view){
+		MainActivity.total_kalori += berpi_kalorii;
 		Intent main_activity = new Intent(getApplicationContext(), MainActivity.class);
 		main_activity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		startActivity(main_activity);

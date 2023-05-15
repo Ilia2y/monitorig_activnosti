@@ -33,8 +33,8 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name = ".podtagivaniya" />
+<!--        <activity-->
+<!--            android:name = ".podtagivaniya" />-->
         <activity
             android:name = ".calibrovka_podtagivaniya" />
         <activity

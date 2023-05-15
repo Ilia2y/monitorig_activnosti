@@ -164,13 +164,13 @@ public class chagomer extends Activity implements SensorEventListener {
 				if (Math.abs(pitch) - last < 4 && verh) {
 					verh = false;
 					chagomer_total_score ++;
-					if(kolvo_za_vrem > 0){
+					if(kolvo_za_vrem < 1){
 						chagomer_kalorii += MainActivity.massa * 0.022;
 					}else {
 						chagomer_kalorii += MainActivity.massa * 0.011;
 					}
 					kolvo_za_vrem = 0;
-					kalorii_text.setText(Math.round(chagomer_kalorii*1000)*1000 + " KKal");
+					kalorii_text.setText(Math.round(chagomer_kalorii*1000)/1000 + " KKal");
 					mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
 					TextView total_score_text_view = findViewById(R.id.chagomer_total_score);
 					total_score_text_view.setText(String.valueOf(chagomer_total_score));
@@ -194,6 +194,7 @@ public class chagomer extends Activity implements SensorEventListener {
 	}
 	
 	public void chagomer_back(View view){
+		MainActivity.total_kalori += chagomer_kalorii;
 		Intent main_activity = new Intent(getApplicationContext(), MainActivity.class);
 		main_activity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		startActivity(main_activity);

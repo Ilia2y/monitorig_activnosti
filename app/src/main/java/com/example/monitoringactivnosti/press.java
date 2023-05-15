@@ -141,13 +141,13 @@ public class press extends Activity implements SensorEventListener {
 				
 				if (prochloe != x & x == 5){
 					press_total_score ++;
-					if(kolvo_za_vrem > 0){
+					if(kolvo_za_vrem < 1){
 						press_kalorii += MainActivity.massa * 0.014666;
 					}else {
 						press_kalorii += MainActivity.massa * 0.007333;
 					}
 					kolvo_za_vrem = 0;
-					kalorii_text.setText(Math.round(press_kalorii*1000)*1000 + " KKal");
+					kalorii_text.setText(Math.round(press_kalorii*1000)/1000 + " KKal");
 					mSoundPool.play(c_beep_sound, 1, 1, 1, 0, 1);
 					TextView total_score_text_view = findViewById(R.id.press_total_score);
 					total_score_text_view.setText(String.valueOf(press_total_score));
@@ -163,6 +163,7 @@ public class press extends Activity implements SensorEventListener {
 	}
 	
 	public void press_back(View view){
+		MainActivity.total_kalori += press_kalorii;
 		Intent main_activity = new Intent(getApplicationContext(), MainActivity.class);
 		main_activity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		startActivity(main_activity);
