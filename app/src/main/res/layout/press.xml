@@ -9,7 +9,7 @@
     <ImageView
         android:layout_width="1441dp"
         android:layout_height="0dp"
-        android:src="@drawable/press_glavn"
+        android:src="@drawable/press"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"

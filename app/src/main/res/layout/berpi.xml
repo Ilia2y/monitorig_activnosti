@@ -6,16 +6,19 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="1200dp"
-        android:layout_height="900dp"
+        android:layout_width="2000dp"
+        android:layout_height="1100dp"
         android:alpha="0.87"
+        android:scrollbarThumbHorizontal="@drawable/berpi_glavn"
+        android:scrollbarTrackVertical="@drawable/berpi_glavn"
         android:src="@drawable/back_otgimaniya_foto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.263"
+        app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.124" />
+        app:layout_constraintVertical_bias="0.794"
+        app:srcCompat="@drawable/berpi1234" />
 
     <Button
         android:id="@+id/berpi_nouse_button"
@@ -137,7 +140,7 @@
         android:id="@+id/berpi_timer_start_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#6200ED"
+        android:backgroundTint="#A30C0C"
         android:onClick="berpi_on_timer_start"
         android:text="Начать"
         android:textSize="34sp"
@@ -150,11 +153,13 @@
     <Button
         android:layout_width="75dp"
         android:layout_height="72dp"
+        android:backgroundTint="#A30C0C"
         android:gravity="center_horizontal|top|center_vertical"
         android:onClick="berpi_back"
         android:text="←"
         android:textColor="#FFFFFF"
         android:textSize="40sp"
+        app:iconTint="#A10707"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.04"

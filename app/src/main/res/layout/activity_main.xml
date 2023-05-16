@@ -10,11 +10,11 @@
         android:layout_width="750dp"
         android:layout_height="0dp"
         android:src="@drawable/main"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone" />
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -177,7 +177,7 @@
                     android:paddingRight="0dp"
                     android:paddingBottom="0dp"
                     android:scaleType="fitEnd"
-                    app:srcCompat="@drawable/otgimaniya_icon"
+                    app:srcCompat="@drawable/berpi111"
                     tools:ignore="SpeakableTextPresentCheck" />
 
             </TableRow>
@@ -189,6 +189,7 @@
         android:id="@+id/sohranit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#A30C0C"
         android:text="сохранить"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.96"
@@ -201,7 +202,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
-        android:text="Name"
+        android:text="Your weight"
         app:layout_constraintEnd_toStartOf="@+id/sohranit_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -210,7 +211,7 @@
         android:id="@+id/vsego_kalorii"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Calories"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"

@@ -137,7 +137,7 @@
         android:id="@+id/otgimaniya_timer_start_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#6200ED"
+        android:backgroundTint="#A30C0C"
         android:onClick="otgimaniya_on_timer_start"
         android:text="Начать"
         android:textSize="34sp"
@@ -150,6 +150,7 @@
     <Button
         android:layout_width="75dp"
         android:layout_height="72dp"
+        android:backgroundTint="#A30C0C"
         android:gravity="center_horizontal|top|center_vertical"
         android:onClick="otgimaniya_back"
         android:paddingTop="-30dp"
