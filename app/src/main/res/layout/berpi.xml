@@ -9,8 +9,6 @@
         android:layout_width="2000dp"
         android:layout_height="1100dp"
         android:alpha="0.87"
-        android:scrollbarThumbHorizontal="@drawable/berpi_glavn"
-        android:scrollbarTrackVertical="@drawable/berpi_glavn"
         android:src="@drawable/back_otgimaniya_foto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
