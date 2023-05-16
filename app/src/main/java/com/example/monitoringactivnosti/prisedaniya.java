@@ -121,7 +121,24 @@ public class prisedaniya extends Activity implements SensorEventListener {
 					}
 				}, 0, 1000);
 			}else{
-				timer_started = true;
+				prisedaniya_timer_textView.setVisibility(View.VISIBLE);
+				btn.setVisibility(View.INVISIBLE);
+				timer.scheduleAtFixedRate(timertask = new TimerTask() {
+
+					public void run() {
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								String[] buffer = obh_func.pred_otchet(prisedaniya_timer_textView, mSoundPool, t_beep_sound, timer_started, pretimes, timertask).split(",");
+								timer_started = Boolean.valueOf(buffer[0]);
+								pretimes = Integer.parseInt(buffer[1]);
+								if(timer_started){
+									btn.setVisibility(View.VISIBLE);
+								}
+							}
+						});
+					}
+				}, 0, 1000);
 			}
 		} else {
 			senSensorManager.unregisterListener(this);
@@ -134,11 +151,7 @@ public class prisedaniya extends Activity implements SensorEventListener {
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
 		TextView kalorii_text = findViewById(R.id.prisedaniya_kalorii_textView);
-		if (!timer_started) {
-			if(pretimes <= 0) {
-				senSensorManager.unregisterListener(this);
-			}
-		} else {
+		if (timer_started){
 			Sensor mySensor = sensorEvent.sensor;
 			if (mySensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
 				float w = sensorEvent.values[0];
@@ -168,7 +181,7 @@ public class prisedaniya extends Activity implements SensorEventListener {
 //			System.out.println(xa + " " + ya + " " + za);
 //				System.out.println(String.valueOf(x) + " " + String.valueOf(y) + " " + String.valueOf(z));
 				
-				if (Math.abs(pitch) - last < 4 && verh) {
+				if (Math.abs(pitch) - last < 10 && verh) {
 					verh = false;
 					prisedaniya_total_score ++;
 					if(kolvo_za_vrem < 1){
@@ -182,7 +195,7 @@ public class prisedaniya extends Activity implements SensorEventListener {
 					TextView total_score_text_view = findViewById(R.id.prisedaniya_total_score);
 					total_score_text_view.setText(String.valueOf(prisedaniya_total_score));
 				} else {
-					if (Math.abs(pitch) - last > 4 && !verh) {
+					if (Math.abs(pitch) - last > 10 && !verh) {
 						verh = true;
 					}
 //				if(Math.abs(pitch) > koff && !verh && prohod){

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -146,6 +147,20 @@ public class obh_func {
 			}
 		}
 		String buffer = beep + "," + timer_started + "," + pretimes + "," + timem + "," + times;
+		return buffer;
+	}
+
+	public static String pred_otchet(TextView timer_textView, SoundPool mSoundPool, int beep_sound, boolean timer_started, int pretimes, TimerTask timertask){
+		if(pretimes >= 0) {
+			timer_textView.setText(Integer.toString(pretimes));
+			pretimes--;
+		}else{
+			mSoundPool.play(beep_sound, 1, 1, 1, 0, 1);
+			timertask.cancel();
+			timer_textView.setVisibility(View.INVISIBLE);
+			timer_started = true;
+		}
+		String buffer = timer_started + "," + pretimes;
 		return buffer;
 	}
 	

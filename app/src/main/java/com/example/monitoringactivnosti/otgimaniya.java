@@ -141,9 +141,9 @@ public class otgimaniya extends Activity implements SensorEventListener {
 			}
 			beep = true;
 			TextView otgimaniya_timer_textView = findViewById(R.id.otgimaniya_timer_textView);
-			otgimaniya_datchik_switch.setVisibility(View.INVISIBLE);
 			
 			pretimes = obh_func.on_timer_start(up_button, down_button, timer_chek_box, btn, total_score_text_view);
+			otgimaniya_datchik_switch.setVisibility(View.INVISIBLE);
 			
 			if(timer_chek_box.isChecked()) {
 				timer.scheduleAtFixedRate(timertask = new TimerTask() {
@@ -171,30 +171,43 @@ public class otgimaniya extends Activity implements SensorEventListener {
 					}
 				}, 0, 1000);
 			}else{
-				timer_started = true;
-				otgimaniya_nouse_button.setEnabled(true);
-				otgimaniya_datchik_switch.setVisibility(View.INVISIBLE);
+				otgimaniya_timer_textView.setVisibility(View.VISIBLE);
+				btn.setVisibility(View.INVISIBLE);
+				timer.scheduleAtFixedRate(timertask = new TimerTask() {
+
+					public void run() {
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								String[] buffer = obh_func.pred_otchet(otgimaniya_timer_textView, mSoundPool, t_beep_sound, timer_started, pretimes, timertask).split(",");
+								timer_started = Boolean.valueOf(buffer[0]);
+								pretimes = Integer.parseInt(buffer[1]);
+								if(timer_started){
+									btn.setVisibility(View.VISIBLE);
+									otgimaniya_nouse_button.setEnabled(true);
+//									otgimaniya_datchik_switch.setVisibility(View.INVISIBLE);
+								}
+							}
+						});
+					}
+				}, 0, 1000);
 			}
 		} else {
 			if(!otgimaniya_datchik_switch.isChecked()) {
 				senSensorManager.unregisterListener(this);
 			}else{
 				otgimaniya_nouse_button.setEnabled(false);
-				otgimaniya_datchik_switch.setVisibility(View.VISIBLE);
 			}
 			
 			timer_started = obh_func.on_timer_not_started(timer_chek_box, btn, up_button, down_button, timertask, timer_started);
+			otgimaniya_datchik_switch.setVisibility(View.VISIBLE);
 		}
 	}
 	
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
 		TextView kalorii_text = findViewById(R.id.otgimaniya_kalorii_textView);
-		if (!timer_started) {
-			if(pretimes <= 0) {
-				senSensorManager.unregisterListener(this);
-			}
-		} else {
+		if (timer_started){
 			Sensor mySensor = sensorEvent.sensor;
 			if (mySensor.getType() == Sensor.TYPE_PROXIMITY) {
 				float x = sensorEvent.values[0];

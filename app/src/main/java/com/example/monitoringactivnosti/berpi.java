@@ -169,9 +169,26 @@ public class berpi extends Activity implements SensorEventListener {
 					}
 				}, 0, 1000);
 			}else{
-				timer_started = true;
-				berpi_nouse_button.setEnabled(true);
-				berpi_datchik_switch.setVisibility(View.INVISIBLE);
+				berpi_timer_textView.setVisibility(View.VISIBLE);
+				btn.setVisibility(View.INVISIBLE);
+				timer.scheduleAtFixedRate(timertask = new TimerTask() {
+
+					public void run() {
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								String[] buffer = obh_func.pred_otchet(berpi_timer_textView, mSoundPool, t_beep_sound, timer_started, pretimes, timertask).split(",");
+								timer_started = Boolean.valueOf(buffer[0]);
+								pretimes = Integer.parseInt(buffer[1]);
+								if(timer_started){
+									btn.setVisibility(View.VISIBLE);
+									berpi_nouse_button.setEnabled(true);
+//									otgimaniya_datchik_switch.setVisibility(View.INVISIBLE);
+								}
+							}
+						});
+					}
+				}, 0, 1000);
 			}
 		} else {
 			if(!berpi_datchik_switch.isChecked()) {
@@ -182,17 +199,14 @@ public class berpi extends Activity implements SensorEventListener {
 			}
 			
 			timer_started = obh_func.on_timer_not_started(timer_chek_box, btn, up_button, down_button, timertask, timer_started);
+			berpi_datchik_switch.setVisibility(View.VISIBLE);
 		}
 	}
 	
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
 		TextView kalorii_text = findViewById(R.id.berpi_kalorii_textView);
-		if (!timer_started) {
-			if(pretimes <= 0) {
-				senSensorManager.unregisterListener(this);
-			}
-		} else {
+		if (timer_started){
 			Sensor mySensor = sensorEvent.sensor;
 			if (mySensor.getType() == Sensor.TYPE_PROXIMITY) {
 				float x = sensorEvent.values[0];

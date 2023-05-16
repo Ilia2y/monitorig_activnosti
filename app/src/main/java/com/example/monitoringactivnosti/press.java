@@ -118,7 +118,24 @@ public class press extends Activity implements SensorEventListener {
 					}
 				}, 0, 1000);
 			}else{
-				timer_started = true;
+				press_timer_textView.setVisibility(View.VISIBLE);
+				btn.setVisibility(View.INVISIBLE);
+				timer.scheduleAtFixedRate(timertask = new TimerTask() {
+
+					public void run() {
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								String[] buffer = obh_func.pred_otchet(press_timer_textView, mSoundPool, t_beep_sound, timer_started, pretimes, timertask).split(",");
+								timer_started = Boolean.valueOf(buffer[0]);
+								pretimes = Integer.parseInt(buffer[1]);
+								if(timer_started){
+									btn.setVisibility(View.VISIBLE);
+								}
+							}
+						});
+					}
+				}, 0, 1000);
 			}
 		} else {
 			senSensorManager.unregisterListener(this);
@@ -130,11 +147,7 @@ public class press extends Activity implements SensorEventListener {
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
 		TextView kalorii_text = findViewById(R.id.press_kalorii_textView);
-		if (!timer_started) {
-			if(pretimes <= 0) {
-				senSensorManager.unregisterListener(this);
-			}
-		} else {
+		if (timer_started){
 			Sensor mySensor = sensorEvent.sensor;
 			if (mySensor.getType() == Sensor.TYPE_PROXIMITY) {
 				float x = sensorEvent.values[0];
