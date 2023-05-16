@@ -6,17 +6,16 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="2000dp"
-        android:layout_height="1100dp"
-        android:alpha="0.87"
-        android:src="@drawable/back_otgimaniya_foto"
+        android:id="@+id/imageView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/berpi_fon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.794"
-        app:srcCompat="@drawable/berpi1234" />
+        app:layout_constraintVertical_bias="0.64" />
 
     <Button
         android:id="@+id/berpi_nouse_button"
@@ -32,7 +31,7 @@
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.638" />
+        app:layout_constraintVertical_bias="0.701" />
 
     <TextView
         android:id="@+id/textView2"
