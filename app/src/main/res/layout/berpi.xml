@@ -9,13 +9,12 @@
         android:id="@+id/imageView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/berpi_fon"
+        android:scaleType="centerCrop"
+        android:src="@drawable/berpi_fon_2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.64" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/berpi_nouse_button"
